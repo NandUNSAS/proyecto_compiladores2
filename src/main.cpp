@@ -15,7 +15,8 @@ void printAST(const vector<ASTNodePtr>& ast, int indent = 0) {
 }
 
 int main() {
-    ifstream file("../entrada.txt");
+    ifstream file("../entrada_struct.txt");
+    //ifstream file("/home/asus/Documentos/proyecto_compiladores/entrada.txt");
     if (!file.is_open()) {
         cerr << "No se pudo abrir el archivo codigo.c" << endl;
         return 1;

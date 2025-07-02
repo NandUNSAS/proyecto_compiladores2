@@ -182,8 +182,8 @@ void drawMemory(sf::RenderWindow& window, const std::vector<Variable>& vars, con
 }
 
 int main() {
-    cout << "hola" << endl;
-    std::ifstream file("../entrada.txt");
+    std::ifstream file("/home/asus/Documentos/proyecto_compiladores/entrada.txt");
+    //std::ifstream file("/home/asus/Documentos/proyecto_compiladores/entrada_struct.txt");
     if (!file.is_open()) {
         std::cerr << "No se pudo abrir el archivo de entrada.\n";
         return 1;

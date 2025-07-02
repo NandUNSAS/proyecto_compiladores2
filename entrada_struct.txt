@@ -1,0 +1,9 @@
+struct Nodo {
+    int valor;
+    struct Nodo* siguiente;
+};
+
+int main() {
+    struct Nodo* lista = (struct Nodo*) malloc(sizeof(struct Nodo));
+    lista->valor = 10;
+}

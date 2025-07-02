@@ -8,6 +8,7 @@ set(CMAKE_CXX_STANDARD 17)
 find_package(SFML 2.5 COMPONENTS system window graphics network audio REQUIRED)
 
 set(SOURCES
+    #src/main_sfml.cpp
     src/main.cpp
     src/lexer.cpp
     src/parser.cpp

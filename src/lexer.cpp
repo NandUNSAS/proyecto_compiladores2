@@ -9,7 +9,7 @@ bool Lexer::isOperatorChar(char c) {
 }
 
 bool Lexer::isSymbol(char c) {
-    return c == '(' || c == ')' || c == '{' || c == '}' || c == ';' || c == ',';
+    return c == '(' || c == ')' || c == '{' || c == '}' || c == ';' || c == ',';  //añadir []  para arreglos;
 }
 
 bool Lexer::isKeyword(const string& word) {
@@ -21,11 +21,12 @@ vector<Token> Lexer::tokenize(const string& code) {
     int i = 0;
 
     while (i < code.length()) {
+        //ignorara espacios en blanco.(tabulaciones, salto de linea)
         if (isspace(code[i])) {
             i++;
             continue;
         }
-
+        //identifcadores y palabras clave, si es un KEYWORD (palabra clave o un IDENTIFER identificador).
         if (isalpha(code[i]) || code[i] == '_') {
             string word;
             while (isalnum(code[i]) || code[i] == '_') {
@@ -37,6 +38,7 @@ vector<Token> Lexer::tokenize(const string& code) {
                 tokens.push_back(Token(TokenType::IDENTIFIER, word));
             }
         }
+        //verifica si es numero, por el momento sin comas.
         else if (isdigit(code[i])) {
             string number;
             while (isdigit(code[i])) {
@@ -44,6 +46,7 @@ vector<Token> Lexer::tokenize(const string& code) {
             }
             tokens.push_back(Token(TokenType::LITERAL, number));
         }
+        //verifica si es una cadena
         else if (code[i] == '"' || code[i] == '\'') {
             char quote = code[i++];
             string str;
@@ -53,6 +56,8 @@ vector<Token> Lexer::tokenize(const string& code) {
             i++; // cerrar comilla
             tokens.push_back(Token(TokenType::LITERAL, str));
         }
+
+        //verificar operadores
         else if (isOperatorChar(code[i])) {
             string op;
             op += code[i++];
@@ -62,6 +67,8 @@ vector<Token> Lexer::tokenize(const string& code) {
             }
             tokens.push_back(Token(TokenType::OPERATOR, op));
         }
+
+        // si es un simbolo (;,(,),{,})
         else if (isSymbol(code[i])) {
             string sym;
             sym += code[i++];

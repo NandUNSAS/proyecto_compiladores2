@@ -241,6 +241,7 @@ vector<ASTNodePtr> Parser::parse() {
 vector<ASTNodePtr> Parser::parseProgram() {
     vector<ASTNodePtr> program;
     while (!isAtEnd()) {
+        //Llama a la función parseStatement(), que analiza y construye el nodo AST correspondiente a una instrucción o declaración completa. 
         program.push_back(parseStatement());
     }
     return program;
